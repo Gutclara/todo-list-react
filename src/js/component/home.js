@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 
-export function Home() {
+export const Home = () => {
+	const [todoList, setTodoList] = useState([
+		{ label: "Do my English homework", done: false },
+		{ label: "Call Pariente", done: false },
+		{ label: "Pick up the car", done: false }
+	]);
+
+	const handleKeyPress = e => {
+		
+		if (e.chardCode===13) {console.log(e.target.value);
+			/*let newTodo = { label: event.target.value, done: false };
+			let newTodoList = [...todoList, newTodo];
+			setTodoList(newTodoList);
+		}*/
+	};
 	return (
-		<div className="text-center">
-			<h1>TODO LIST</h1>
-			<form>
-				<div className="form-row aling-items-center">
-					<div className="col-auto">
-						<label className="sr-only" htmlFor="inlineFormInput">
-							Name
-						</label>
+		<div className="conteiner-fluid">
+			<div className="row d-flex justify-content-center">
+				<div className="col-12 col-md-6 col-xl-4">
+					<div className="card mt-5" style={{ width: "100%" }}>
 						<input
-							type="text"
-							className="form-control mb-2"
-							id="inlineFormInput"
-							placeholder="Agregue una tarea"
+							onKeyPress={handleKeyPress}
+							placeholder="add todo"
 						/>
-					</div>
-					<div className="col-auto">
-						<button type="submit" className="btn btn-primary mb-2">
-							Submit
-						</button>
+						<ul className="list-group list-group-flush">
+							{todoList.map((todo, index) =>
+								<li key={index} className="list-group-item">
+									{todo.label}
+								</li>
+							)}
+						</ul>
 					</div>
 				</div>
-			</form>
+			</div>
 		</div>
 	);
 }
