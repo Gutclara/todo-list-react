@@ -29,7 +29,7 @@ export function Home() {
 			<div className="row justify-content-center mt-5 ">
 				<div className="col-4">
 					<h1 className="titulo d-flex justify-content-center text-secondary">
-						todos
+						Todo
 					</h1>
 
 					<form onSubmit={New}>
@@ -38,7 +38,7 @@ export function Home() {
 							className="form-control mb-2 border border-secondary"
 							placeholder={
 								todos.length == 0
-									? "No tasks, add a task"
+									? "Whats your next task?"
 									: "Add task"
 							}
 							onChange={listenInput}></input>
