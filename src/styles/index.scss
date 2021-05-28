@@ -11,3 +11,29 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+h1{
+  font-family: monospace;
+  text-decoration: underline; 
+  font-weight: lighter;
+  font-size: 100px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+.close{color: skyblue;}
+.items{color: gray;}
+
+.container{
+  background-color: rgb(214, 214, 211);
+  width: 800px;
+  height: 700px;
+ 
+}
+
+.close {
+  display: none;
+}
+
+li:hover .close{
+  display: block;
+}

@@ -1,37 +1,66 @@
 import React, { useState } from "react";
 
-export const Home = () => {
-	const [todoList, setTodoList] = useState([
-		{ label: "Do my English homework", done: false },
-		{ label: "Call Pariente", done: false },
-		{ label: "Pick up the car", done: false }
-	]);
+//create your first component
+export function Home() {
+	const [newTodo, setNewTodo] = useState("");
+	const [todos, setTodos] = useState([]);
 
-	const handleKeyPress = e => {
-		
-		if (e.chardCode===13) {console.log(e.target.value);
-			/*let newTodo = { label: event.target.value, done: false };
-			let newTodoList = [...todoList, newTodo];
-			setTodoList(newTodoList);
-		}*/
-	};
+	function listenInput(e) {
+		e.preventDefault();
+		setNewTodo(e.target.value);
+	}
+
+	function New(e) {
+		e.preventDefault();
+		if (newTodo === "") return;
+		setTodos([
+			...todos,
+			{ id: Date.now(), text: newTodo, numero: todos.length + 1 }
+		]);
+		e.target.reset();
+	}
+
+	function Remove(id) {
+		setTodos(todos.filter(todo => todo.id !== id));
+	}
+
 	return (
-		<div className="conteiner-fluid">
-			<div className="row d-flex justify-content-center">
-				<div className="col-12 col-md-6 col-xl-4">
-					<div className="card mt-5" style={{ width: "100%" }}>
+		<div className="container">
+			<div className="row justify-content-center mt-5 ">
+				<div className="col-4">
+					<h1 className="titulo d-flex justify-content-center text-secondary">
+						todos
+					</h1>
+
+					<form onSubmit={New}>
 						<input
-							onKeyPress={handleKeyPress}
-							placeholder="add todo"
-						/>
-						<ul className="list-group list-group-flush">
-							{todoList.map((todo, index) =>
-								<li key={index} className="list-group-item">
-									{todo.label}
+							type="text"
+							className="form-control mb-2 border border-secondary"
+							placeholder={
+								todos.length == 0
+									? "No tasks, add a task"
+									: "Add task"
+							}
+							onChange={listenInput}></input>
+						<ul className="list-group border border-secondary">
+							{todos.map((todo, index) => (
+								<li className="list-group-item" key={index}>
+									{todo.text}
+									<button
+										type="button"
+										className="close"
+										onClick={() => Remove(todo.id)}>
+										<span aria-hidden="true">&times;</span>
+									</button>
 								</li>
-							)}
+							))}
 						</ul>
-					</div>
+						<div className="col mb-5">
+							<small className="items">
+								{todos.length} items left
+							</small>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
