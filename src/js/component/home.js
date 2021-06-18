@@ -28,21 +28,21 @@ export function Home() {
 		<div className="container">
 			<div className="row justify-content-center mt-5 ">
 				<div className="col-4">
-					<h1 className="titulo d-flex justify-content-center text-secondary">
+					<h1 className="titulo d-flex justify-content-center text-success">
 						Todo
 					</h1>
 
 					<form onSubmit={New}>
 						<input
 							type="text"
-							className="form-control mb-2 border border-secondary"
+							className="form-control mb-2 border border-success"
 							placeholder={
 								todos.length == 0
 									? "Whats your next task?"
 									: "Add task"
 							}
 							onChange={listenInput}></input>
-						<ul className="list-group border border-secondary">
+						<ul className="list-group border border-success">
 							{todos.map((todo, index) => (
 								<li className="list-group-item" key={index}>
 									{todo.text}
